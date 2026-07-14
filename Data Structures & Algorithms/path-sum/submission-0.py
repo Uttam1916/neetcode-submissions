@@ -1,0 +1,14 @@
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        def dfs(node, total):
+            if not node:
+                return False
+
+            total += node.val
+
+            if not node.left and not node.right:
+                return total == targetSum
+
+            return dfs(node.left, total) or dfs(node.right, total)
+
+        return dfs(root, 0)
